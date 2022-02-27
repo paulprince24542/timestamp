@@ -41,20 +41,20 @@ app.get("/api/:date_string", (req, res) => {
   let unix_timestamp = parseInt(req.params.date_string);
   var date = new Date(parseInt(req.params.date_string));
   var regexp = /\d+(?:-\d+)+/g;
-  if (req.params.date_string.match(regexp) != null) {
+  if (Date.parse(req.params.date_string) != NaN) {
+    console.log(Date.parse(req.params.date_string));
+    var unix = Date.parse(req.params.date_string);
+    res.json({
+      unix: unix,
+      utc: new Date(unix).toUTCString(),
+    });
+  } else if (req.params.date_string.match(regexp) != null) {
     var DashDate = req.params.date_string;
     res.json({
       unix: new Date(DashDate).getTime(),
       utc: new Date(DashDate).toUTCString(),
     });
-  }else if(Date.parse(req.params.date_string) !=  NaN){
-    var unix = Date.parse(req.params.date_string)
-    res.json({
-      unix: unix,
-      utc: new Date(unix).toUTCString()
-    })
-  }
-   else if (date.getTime() > 0) {
+  } else if (date.getTime() > 0) {
     res.json({
       unix: unix_timestamp,
       utc: new Date(unix_timestamp).toUTCString(),
