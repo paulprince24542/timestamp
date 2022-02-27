@@ -37,12 +37,12 @@ app.get("/api/", (req, res) => {
 //   });
 // });
 
-app.get("/api/:date?", (req, res) => {
-  let unix_timestamp = parseInt(req.params.date);
-  var date = new Date(parseInt(req.params.date));
+app.get("/api/:date_string", (req, res) => {
+  let unix_timestamp = parseInt(req.params.date_string);
+  var date = new Date(parseInt(req.params.date_string));
   var regexp = /\d+(?:-\d+)+/g;
-  if (req.params.date.match(regexp) != null) {
-    var DashDate = req.params.date;
+  if (req.params.date_string.match(regexp) != null) {
+    var DashDate = req.params.date_string;
     res.json({
       unix: new Date(DashDate).getTime(),
       utc: new Date(DashDate).toUTCString(),
