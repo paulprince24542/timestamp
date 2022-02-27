@@ -47,7 +47,14 @@ app.get("/api/:date_string", (req, res) => {
       unix: new Date(DashDate).getTime(),
       utc: new Date(DashDate).toUTCString(),
     });
-  } else if (date.getTime() > 0) {
+  }else if(Date.parse(req.params.date_string) !=  NaN){
+    var unix = Date.parse(req.params.date_string)
+    res.json({
+      unix: unix,
+      utc: new Date(unix).toUTCString()
+    })
+  }
+   else if (date.getTime() > 0) {
     res.json({
       unix: unix_timestamp,
       utc: new Date(unix_timestamp).toUTCString(),
