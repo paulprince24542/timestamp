@@ -30,7 +30,7 @@ app.get("/api/", (req, res) => {
   });
 });
 
-app.get("/api/:date", (req, res) => {
+app.get("/api/:date?", (req, res) => {
   let unix_timestamp = parseInt(req.params.date);
   var date = new Date(unix_timestamp);
   var regexp = /\d+(?:-\d+)+/g;
