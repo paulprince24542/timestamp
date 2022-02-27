@@ -39,7 +39,7 @@ app.get("/api/", (req, res) => {
 
 app.get("/api/:date?", (req, res) => {
   let unix_timestamp = parseInt(req.params.date);
-  var date = new Date(unix_timestamp);
+  var date = new Date(parseInt(req.params.date));
   var regexp = /\d+(?:-\d+)+/g;
   if (req.params.date.match(regexp) != null) {
     var DashDate = req.params.date;
